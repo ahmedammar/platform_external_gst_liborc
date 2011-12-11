@@ -4,7 +4,7 @@ dnl don't forget to update libversion
 
 AS_NANO(ORC_GIT=no,ORC_GIT=yes)
 
-AC_CANONICAL_HOST([])
+dnl AC_CANONICAL_HOST([])
 AM_INIT_AUTOMAKE(1.6)
 
 ORC_MAJORMINOR=0.4
@@ -63,16 +63,17 @@ AC_SUBST(LIBM)
 
 AC_CHECK_LIB(rt, clock_gettime,
    AC_DEFINE(HAVE_CLOCK_GETTIME, 1, [Defined if we have clock_gettime()])
-   LIBRT=-lrt
    )
 AC_SUBST(LIBRT)
+
+AC_DEFINE(HAVE_CLOCK_GETTIME, 1, [Defined if we have clock_gettime()])
 
 AC_CACHE_CHECK(for monotonic clocks,
     orc_cv_monotonic_clock,AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
 #include <time.h>
 #include <unistd.h>
 int main() {
-#if !(defined(_POSIX_MONOTONIC_CLOCK) && _POSIX_MONOTONIC_CLOCK >= 0 && defined(CLOCK_MONOTONIC))
+#if !(defined(CLOCK_MONOTONIC))
         #error No monotonic clock
 #endif
         return 0;
@@ -192,7 +193,7 @@ testsuite/benchmorc/Makefile
 examples/Makefile
 tools/Makefile
 orc-uninstalled.pc
-orc.pc
+orc-0.4.pc
 ])
 AC_OUTPUT
 

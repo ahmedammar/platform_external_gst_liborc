@@ -1,9 +1,7 @@
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
-includedir=@includedir@/orc-@ORC_MAJORMINOR@
-toolsdir=${exec_prefix}/bin
-
+includedir=${pc_top_builddir}/${pcfiledir}
 
 Name: orc-@ORC_MAJORMINOR@
 Description: Library of Optimized Inner Loops Runtime Compiler
@@ -12,5 +10,5 @@ Libs: -L${libdir} -lorc-@ORC_MAJORMINOR@
 Libs.private: @LIBM@ @LIBRT@
 Cflags: -I${includedir}
 
-orcc=${toolsdir}/orcc@EXEEXT@
+orcc=orcc@EXEEXT@
 

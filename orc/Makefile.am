@@ -97,9 +97,19 @@ generate_emulation_LDADD = $(ORC_LIBS)
 generate_emulation_CFLAGS = $(ORC_CFLAGS)
 generate_emulation_DEPENDENCIES = liborc-0.4.la
 
-update: generate-emulation
-	$(top_builddir)/tools/orcc$(EXEEXT) --implementation -o orcfunctions.c orcfunctions.orc
-	$(top_builddir)/tools/orcc$(EXEEXT) --header -o orcfunctions.h orcfunctions.orc
-	./generate-emulation$(EXEEXT) -o orcemulateopcodes.c
-	./generate-emulation$(EXEEXT) --header -o orcemulateopcodes.h
-	
+update:
+	orcc$(EXEEXT) --implementation -o orcfunctions.c orcfunctions.orc
+	orcc$(EXEEXT) --header -o orcfunctions.h orcfunctions.orc
+
+Android.mk: Makefile.am update
+	androgenizer \
+	-:PROJECT liborc -:SHARED liborc-@ORC_MAJORMINOR@ \
+	 -:TAGS eng debug \
+         -:REL_TOP $(top_srcdir) -:ABS_TOP $(abs_top_srcdir) \
+	 -:SOURCES $(liborc_@ORC_MAJORMINOR@_la_SOURCES) \
+	 -:CFLAGS $(liborc_@ORC_MAJORMINOR@_la_CFLAGS) $(DEFS) $(INCLUDES) \
+	 -:LDFLAGS $(liborc_@ORC_MAJORMINOR@_la_LDFLAGS) \
+	           $(liborc_@ORC_MAJORMINOR@_la_LIBADD) \
+	 -:PASSTHROUGH LOCAL_ARM_MODE:=arm \
+		       LOCAL_MODULE_PATH:='$$(TARGET_OUT)/lib' \
+	> $@

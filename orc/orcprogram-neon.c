@@ -48,7 +48,7 @@ orc_neon_emit_prologue (OrcCompiler *compiler)
   if (regs) orc_arm_emit_push (compiler, regs);
 
 }
-
+#if 0
 void
 orc_neon_dump_insns (OrcCompiler *compiler)
 {
@@ -67,6 +67,7 @@ orc_neon_dump_insns (OrcCompiler *compiler)
   orc_arm_loadw (compiler, ORC_ARM_A3, ORC_ARM_A4, 0xa5);
   orc_arm_emit_load_reg (compiler, ORC_ARM_A3, ORC_ARM_A4, 0x5a5);
 }
+#endif
 
 void
 orc_neon_emit_epilogue (OrcCompiler *compiler)
