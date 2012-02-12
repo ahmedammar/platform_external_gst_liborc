@@ -21,7 +21,7 @@ liborc-configure:
 	LDFLAGS="$(CONFIGURE_LDFLAGS)" \
 	CPP=$(CONFIGURE_CPP) \
 	CPPFLAGS="$(CONFIGURE_CPPFLAGS)" \
-	PKG_CONFIG_LIBDIR="$(CONFIGURE_PKG_CONFIG_LIBDIR)" \
+	PKG_CONFIG_PATH="$(CONFIGURE_PKG_CONFIG_PATH)" \
 	PKG_CONFIG_TOP_BUILD_DIR=/ \
 	$(abspath $(liborc_TOP))/configure --host=arm-linux-androideabi \
 	--prefix=/system --enable-backend=neon --disable-gtk-doc PACKAGE=liborc && \
