@@ -25,7 +25,7 @@ pkginclude_HEADERS = \
 Android.mk: Makefile.am
 	androgenizer \
 	-:PROJECT liborc-test -:SHARED liborc-test-@ORC_MAJORMINOR@ \
-	 -:TAGS eng debug \
+	 -:TAGS user eng debug \
          -:REL_TOP $(top_srcdir) -:ABS_TOP $(abs_top_srcdir) \
 	 -:SOURCES $(liborc_test_@ORC_MAJORMINOR@_la_SOURCES) \
 	 -:CFLAGS $(liborc_test_@ORC_MAJORMINOR@_la_CFLAGS) $(DEFS) $(INCLUDES) \

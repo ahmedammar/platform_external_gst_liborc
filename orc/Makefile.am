@@ -104,7 +104,7 @@ update:
 Android.mk: Makefile.am update
 	androgenizer \
 	-:PROJECT liborc -:SHARED liborc-@ORC_MAJORMINOR@ \
-	 -:TAGS eng debug \
+	 -:TAGS user eng debug \
          -:REL_TOP $(top_srcdir) -:ABS_TOP $(abs_top_srcdir) \
 	 -:SOURCES $(liborc_@ORC_MAJORMINOR@_la_SOURCES) \
 	 -:CFLAGS $(liborc_@ORC_MAJORMINOR@_la_CFLAGS) $(DEFS) $(INCLUDES) \
